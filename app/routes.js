@@ -235,7 +235,8 @@ module.exports = function(app, passport) {
     });
 	
     app.get('*', function(req, res) {
-		res.sendFile('index.html', { root: path.join(__dirname, '../public') });
+		
+    	res.redirect('/scotch');
 		/*
 		if (req.user) {
     		res.render('/index.html', {

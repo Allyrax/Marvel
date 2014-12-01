@@ -49,8 +49,11 @@
 
             // route for the home page
             .when('/', {
-                templateUrl : 'pages/home.html',
-                controller  : 'comicController'
+                templateUrl : 'pages/comics.html',
+                controller  : 'comicsController',
+				resolve: {
+					loggedin: checkLoggedin
+				}
             })
 			
 			.when('/comic/:comicId', {
@@ -154,8 +157,8 @@
 	
 	scotchApp.controller('loginController', function($scope, $http, $rootScope, $location) {
 		$scope.formData = {
-				email: 'matt.laing13@gmail.com',
-				password: '194875263'
+				email: '',
+				password: ''
 			};
 		
         $scope.login = function() {
