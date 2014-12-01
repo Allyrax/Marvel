@@ -1,0 +1,37 @@
+<!-- page for a single comic -->
+<section class="comicPage">
+    <a href="{{comic.url}}">
+    <section>
+        <img src={{comic.thumbnail}} class= "thumbnailComicPage" />
+        <section class="comicPageTitle"> {{comic.title}} {{ comic.id}}</section>
+        <section class="comicDescription"> {{comic.description}}</section>
+    </section>
+    </a>
+</section>
+
+
+<section class="reviewContainer" ng-repeat="review in userReviews">
+    <section class="review">
+        <p class="reviewStatus"> {{review.read ? 'Read' : 'Not Read'}} </p>
+        <h2 class="reviewUser"><a href="#users/{{review.user}}"> {{review.user}} </a></h2>
+        <h2 class="reviewPub"> {{ review.pubReview}}</h2>
+    </section>
+</section>
+
+<section>
+	<section class="reviewTextContainer">
+    	<h2>Review: </h2><input class="reviewText" type="text" ng-model="formData.pubReview">
+    </section>
+    <section class="reviewTextContainer">
+    	<h2>Notes:</h2><input class="reviewText" type="text" ng-model="formData.privReview">
+    </section>
+    <br><br>
+   
+   	<section id="reviewButtons">
+        <section class="searchMarvel" type="submit"><input type="checkbox" ng-model="formData.read">Read</section>
+        <section class="searchMarvel" type="submit"><input type="checkbox" ng-model="formData.planToRead">Plan To Read</section>
+    
+        <section class="searchMarvel" type="submit" ng-click="createReview()">Add</section>
+        <section class="searchMarvel" type="submit" ng-click="deleteReview()">Remove</section>
+    </section>
+</section>

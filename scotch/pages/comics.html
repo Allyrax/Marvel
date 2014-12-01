@@ -1,0 +1,14 @@
+<section id="searchContainer">
+	<input id="searchBar" type="text" ng-model="marvelQuery" value="marvelQuery">
+    
+    <section id="searchMarvel" ng-click="searchMarvel()"><p id="searchButtonText">search</p></section>
+</section>
+
+<section class="comic" ng-repeat="comic in comics | orderBy : comic.title | filter : marvelQuery">
+        <a href="#comic/{{comic.id}}">
+        <section class="comicSection">
+            <img src={{comic.thumbnail}} class= "thumbnail" />
+            <h3 class="comicTitle"> {{comic.title}}</h3>
+        </section>
+        </a>
+</section>

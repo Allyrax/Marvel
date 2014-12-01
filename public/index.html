@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Assignment 4 Comic Book Manager</title>
+<link rel="stylesheet" href="../css/style.css">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+
+</head>
+<body ng-app="comicApp" ng-controller="mainController">
+	<section id="container">
+    	<section id="header" ng-controller="personController">
+        	<h1 id="title">Comic Book Manager</h1>
+            
+            <button ng-click="toggle()">Toggle</button>
+
+            <p ng-hide="myVar">
+            First Name: <input type="text" ng-model="firstName"><br>
+            Last Name: <input type="text" ng-model="lastName"><br>
+            <br>
+            Full Name: {{firstName + " " + lastName}}
+            </p>
+            
+			First Name: <input type="text" ng-model="firstName"><br>
+            Last Name: <input type="text" ng-model="lastName"><br>
+            <br>
+            Full Name: {{firstName + " " + lastName}}
+            
+            <div ng-app="" ng-init="person={firstName:'John',lastName:'Doe'}">
+
+            <p>The name is {{ person.lastName | uppercase }}</p>
+            
+            </div>
+            
+            <div ng-app="" ng-controller="namesController">
+            	<p><input type="text" ng-model="test"></p>
+
+                <ul>
+                  <li ng-repeat="x in names | filter:test | orderBy:'country'">
+                    {{ x.name + ', ' + x.country }}
+                  </li>
+                </ul>
+            
+            </div>
+            
+            <p>
+            <button ng-disabled="mySwitch">Click Me!</button>
+            </p>
+            
+            <p>
+            <input type="checkbox" ng-model="mySwitch">Button
+            </p>
+            
+            <div ng-app="">
+
+            <p ng-show="true">I am visible.</p>
+            
+            <p ng-show="false">I am not visible.</p>
+            
+            <p ng-init="hour=13" ng-show="hour > 12">I am visible.</p>
+            
+            </div>
+            
+            <section id="navBar">
+            	<section class="navItem">
+					<a href="user">User</a>
+                </section>
+                <section class="navItem">
+					<a href="comics">Comics</a>
+                </section>
+                <section class="navItem">
+					<a href="comic">Comic</a>
+                </section>
+                <section class="navItem">
+					<a href="login">Log In</a>
+                </section>
+                <section class="navItem">
+					<a href="searchMarvel">Search Marvel</a>
+                </section>
+            </section>
+            
+            <div ng-app="" ng-controller="formController">
+              <form novalidate>
+                First Name:<br>
+                <input type="text" ng-model="user.firstName"><br>
+                Last Name:<br>
+                <input type="text" ng-model="user.lastName">
+                <br><br>
+                <button ng-click="reset()">RESET</button>
+              </form>
+              <p>form = {{user}}</p>
+              <p>master = {{master}}</p>
+            </div>
+            
+            <form  ng-app=""  ng-controller="validateCtrl"
+            name="myForm" novalidate>
+            
+            <p>Username:<br>
+              <input type="text" name="user" ng-model="user" required>
+              <span style="color:red" ng-show="myForm.user.$dirty && myForm.user.$invalid">
+              <span ng-show="myForm.user.$error.required">Username is required.</span>
+              </span>
+            </p>
+            
+            <p>Email:<br>
+              <input type="email" name="email" ng-model="email" required>
+              <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+              <span ng-show="myForm.email.$error.required">Email is required.</span>
+              <span ng-show="myForm.email.$error.email">Invalid email address.</span>
+              </span>
+            </p>
+            
+            <p>
+              <input type="submit"
+              ng-disabled="myForm.user.$dirty && myForm.user.$invalid ||
+              myForm.email.$dirty && myForm.email.$invalid">
+            </p>
+            
+            </form>
+            
+        </section>
+        
+        <section ng-view>
+        	
+        </section>
+        
+        <!--
+		<script type="text/x-handlebars" data-template-name="login">
+			{{#if loggedIn}}
+				<p>You are already logged in!</p>
+			{{else}}
+				<form class="form-inline" {{action login on="submit"}}>
+					<h2>Log In</h2>
+					{{input value=username type="text" placeholder="Username"}}
+					{{input value=password type="password" placeholder="Password"}}
+					{{input class="btn" type="submit" value="Log In"}}
+				</form>
+				{{#if errorMessage}}
+					<div class="alert alert-error">{{errorMessage}}</div>
+				{{/if}}
+			{{/if}}
+		</script>
+        
+        <script type="text/x-handlebars" data-template-name="user">
+			<h1>USER</h1>
+			
+			{{#each comic in model}}
+				<section>
+					<h3>{{comic.title}}</h3>
+					<p>{{comic.description}}</p>
+				</section>
+			{{/each}}
+		</script>
+        
+        <script type="text/x-handlebars" data-template-name="marvelSearch">
+		/*<section id="searchContainer">
+        	<input value="search" id="searchBar" />
+			{{input
+			  type="text"
+			  id="new-comic"
+			  placeholder="Search"
+			  value=newTitle
+			  action="createSearch"}}
+        </section>*/
+			{{#each comic in model}}
+				<section>
+					<h3>{{comic.data.title}}</h3>
+					<p>{{comic.data.description}}</p>
+				</section>
+			{{/each}}
+		</script>-->
+        
+        <!--
+        <script type="text/x-handlebars" data-template-name="comic">
+        <section id="comicList">
+			{{#each review in model}}			
+				<section class="comic">
+					<section class="comicSection" {{bind-attr class="comic.isCompleted:completed"}}>
+						<h1> {{review.user}}</h1>
+						<h1 class="comicTitle"> {{review.pubReview}}</h1>
+					</section>
+				</section>
+			{{/each}}
+        </section>
+		</script>
+        
+        <script type="text/x-handlebars" data-template-name="comicReview">
+		
+			{{#each comic in model}}
+			
+				<section class="comic">
+					{{#link-to "comic" comic.id}}
+						<section class="comicSection">
+							<img {{bind-attr src=comic.thumbnail}} class= "thumbnail" />
+							<h1 class="comicTitle"> {{comic.title}}</h1>
+						</section>
+					{{/link-to}}
+				</section>
+			{{/each}}
+        </section>
+		</script>
+    </section>-->
+    
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-route.js"></script>
+<script>
+var app = angular.module("comicApp", ['ngRoute']);
+
+//defining the variables
+app.controller('mainController', function($scope, $route, $routeParams, $location) {
+     $scope.$route = $route;
+     $scope.$location = $location;
+     $scope.$routeParams = $routeParams;
+});
+
+//defining the routes
+app.config(function($routeProvider, $locationProvider) {
+	$routeProvider
+		.when('/comic/:comicId', {
+		templateUrl: 'comic.html',
+		controller: 'comicController',
+		resolve: {
+			// I will cause a 1 second delay
+			delay: function($q, $timeout) {
+				var delay = $q.defer();
+				$timeout(delay.resolve, 1000);
+				return delay.promise;
+			}
+		}
+	})
+	.when('/Book/:bookId/ch/:chapterId', {
+		templateUrl: 'chapter.html',
+		controller: 'ChapterController'
+	})
+});
+
+app.controller("namesController", function($scope) {
+    $scope.names = [
+        {name:'Jani',country:'Norway'},
+        {name:'Hege',country:'Sweden'},
+        {name:'Kai',country:'Denmark'}
+    ];
+});
+
+//For a single comic
+app.controller("comicsController", function($scope, $http) {
+    $http.get("http://198.100.155.100:9001/comic")
+    .success(function(response) {$scope.comics = response;});
+});
+
+//getting all the comics
+app.controller("comicsController", function($scope, $http) {
+    $http.get("http://198.100.155.100:9001/comic")
+    .success(function(response) {$scope.comics = response;});
+});
+
+app.controller("personController", function($scope) {
+    $scope.firstName = "John";
+    $scope.lastName = "Doe";
+	
+	$scope.myVar = false;
+    $scope.toggle = function() {
+        $scope.myVar = !$scope.myVar;
+    };
+});
+
+app.controller("formController", function($scope) {
+    $scope.master = {firstName: "John", lastName: "Doe"};
+    $scope.reset = function() {
+        $scope.user = angular.copy($scope.master);
+    };
+    $scope.reset();
+});
+
+app.controller("validateCtrl", function($scope) {
+    $scope.user = 'John Doe';
+    $scope.email = 'john.doe@gmail.com';
+});
+
+</script>
+
+</body>
+</html>

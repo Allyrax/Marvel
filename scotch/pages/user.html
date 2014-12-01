@@ -1,0 +1,10 @@
+<section class="reviewContainer" ng-repeat="review in userReviews">
+    <section class="review">
+    	<a href="#comic/{{review.comicId}}">
+            <p class="reviewStatus"> {{review.read ? 'Read' : 'Not Read'}} </p>
+            <h2 class="reviewUser"> {{review.comicId}} </h2>
+            <h2 class="reviewPub"> {{ review.pubReview}}</h2>
+            <h2 class="reviewPub"> {{ review.privReview}}</h2>
+        </a>
+    </section>
+</section>

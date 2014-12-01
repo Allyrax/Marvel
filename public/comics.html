@@ -1,0 +1,10 @@
+<section ng-controller="comicsController">    
+    <section class="comic" ng-repeat="comic in comics | orderBy : comic.title">
+            <a href="#comic/{{comic.id}}">
+            <section class="comicSection">
+                <img src={{comic.thumbnail}} class= "thumbnail" />
+                <h1 class="comicTitle"> {{comic.title | uppercase }} {{ comic.id}}</h1>
+            </section>
+            </a>
+    </section>
+</section>
